@@ -10,7 +10,7 @@ const getDefaultStyle = (isLight) => ({
 
 const SkipButton = ({ isLight, ...props }) => (
   <TextButton {...props} textStyle={getDefaultStyle(isLight)}>
-    Skip
+    Pular
   </TextButton>
 );
 

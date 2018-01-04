@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, PropTypes } from 'react';
 import { View, ScrollView, Dimensions, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import tinycolor from 'tinycolor2';
 
@@ -32,8 +31,12 @@ export default class Onboarding extends Component {
     const { currentPage } = this.state;
     const nextPage = currentPage + 1;
     const offsetX = nextPage * width;
-    this.refs.scroll.scrollTo({ x: offsetX, animated: true });
-    this.setState({ currentPage: nextPage });
+    this.refs.scroll.scrollTo({
+      x: offsetX,
+      animated: true,
+    },() => {
+      this.setState({ currentPage: nextPage });
+    });
   };
 
   render() {
@@ -53,7 +56,7 @@ export default class Onboarding extends Component {
           onScroll={this.updatePosition}
           scrollEventThrottle={100}
         >
-          {pages.map(({ image, title, subtitle }, idx) => (
+          {pages.map(({ image, title, subtitle, titleStyles, imageStyles, subtitleStyles }, idx) => (
             <PageData
               key={idx}
               isLight={isLight}
@@ -62,6 +65,9 @@ export default class Onboarding extends Component {
               subtitle={subtitle}
               width={width}
               height={height}
+              titleStyles={titleStyles}
+              imageStyles={imageStyles}
+              subtitleStyles={subtitleStyles}
             />
           ))}
         </ScrollView>

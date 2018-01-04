@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 
 const Page = ({ width, height, children }) => (
-  <View style={{ width, height }}>
+  <ScrollView contentContainerStyle={{ width, height: height - 85 }}>
     {children}
-  </View>
+  </ScrollView>
 );
 
 const PageContent = ({ children }) => (
@@ -15,21 +15,23 @@ const PageContent = ({ children }) => (
   </View>
 );
 
-const PageData = ({ isLight, image, title, subtitle, ...rest }) => (
-  <Page {...rest}>
-    <PageContent>
-      <View style={styles.image}>
-        {image}
-      </View>
-      <Text style={{ ...styles.title, ...(isLight ? styles.titleLight : {}) }}>
-        {title}
-      </Text>
-      <Text style={{ ...styles.subtitle, ...(isLight ? styles.subtitleLight : {}) }}>
-        {subtitle}
-      </Text>
-    </PageContent>
-  </Page>
-);
+const PageData = ({ isLight, image, title, subtitle, titleStyles, imageStyles, subtitleStyles, ...rest }) => {
+  return (
+    <Page {...rest}>
+      <PageContent>
+        <View style={imageStyles}>
+          {image}
+        </View>
+        <Text style={titleStyles}>
+          {title}
+        </Text>
+        <Text style={subtitleStyles}>
+          {subtitle}
+        </Text>
+      </PageContent>
+    </Page>
+  )
+};
 
 const styles = {
   content: {
@@ -37,28 +39,7 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  image: {
-    flex: 0,
-    paddingBottom: 60,
-    alignItems: 'center',
-  },
-  title: {
-    textAlign: 'center',
-    fontSize: 26,
-    color: '#fff',
-    paddingBottom: 15,
-  },
-  titleLight: {
-    color: '#000',
-  },
-  subtitle: {
-    textAlign: 'center',
-    fontSize: 16,
-    color: 'rgba(255, 255, 255, 0.7)',
-  },
-  subtitleLight: {
-    color: 'rgba(0, 0, 0, 0.7)',
+    paddingHorizontal: 50,
   },
 };
 
