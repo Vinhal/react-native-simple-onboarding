@@ -15,7 +15,18 @@ const PageContent = ({ children }) => (
   </View>
 );
 
-const PageData = ({ isLight, image, title, subtitle, titleStyles, imageStyles, subtitleStyles, ...rest }) => {
+const PageData = ({
+  isLight,
+  image,
+  title,
+  subtitle,
+  titleStyles,
+  imageStyles,
+  subtitleStyles,
+  ...rest,
+  pageComponent,
+  pageComponentContainerStyle,
+}) => {
   return (
     <Page {...rest}>
       <PageContent>
@@ -28,6 +39,9 @@ const PageData = ({ isLight, image, title, subtitle, titleStyles, imageStyles, s
         <Text style={subtitleStyles}>
           {subtitle}
         </Text>
+        <View style={pageComponentContainerStyle}>
+          {pageComponent}
+        </View>
       </PageContent>
     </Page>
   )
