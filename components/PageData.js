@@ -23,9 +23,9 @@ const PageData = ({
   titleStyles,
   imageStyles,
   subtitleStyles,
-  ...rest,
   pageComponent,
   pageComponentContainerStyle,
+    ...rest,
 }) => {
   return (
     <Page {...rest}>
